@@ -22,7 +22,7 @@ public class Rover {
         return this.y;
     }
 
-    public Direction getDirection() { // MÓDOSÍTVA
+    public Direction getDirection() {
         return this.direction;
     }
 
@@ -34,15 +34,10 @@ public class Rover {
             this.direction = this.direction.turnLeft();
 
         } else if (command.equals("f")) {
-            if (this.direction == Direction.N) {
-                this.y = this.y + 1;
-            } else if (this.direction == Direction.E) {
-                this.x = this.x + 1;
-            } else if (this.direction == Direction.S) {
-                this.y = this.y - 1;
-            } else if (this.direction == Direction.W) {
-                this.x = this.x - 1;
-            }
+            int dx = this.direction.getDeltaX();
+            int dy = this.direction.getDeltaY();
+            this.x = this.x + dx;
+            this.y = this.y + dy;
         }
     }
 }
