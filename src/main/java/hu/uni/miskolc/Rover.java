@@ -40,6 +40,8 @@ public class Rover {
                 this.x = this.x + 1;
             } else if (this.direction == Direction.S) {
                 this.y = this.y - 1;
+            } else if (this.direction == Direction.W) {
+                this.x = this.x - 1;
             }
         }
     }
