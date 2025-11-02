@@ -4,12 +4,14 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RoverTest {
-
+    // Egy alapértelmezett bolygó az összes teszthez
+    // Legyen mondjuk 100x100 méretű
+    private final Planet defaultPlanet = new Planet(100, 100);
     // 1. Teszt: "test_rover_can_be_initialized"
     // Ez a "RED" fázis
     @Test
     void testRoverCanBeInitialized() {
-        Rover rover = new Rover(0, 0, Direction.N);
+        Rover rover = new Rover(0, 0, Direction.N, defaultPlanet);
         assertEquals(0, rover.getX());
         assertEquals(0, rover.getY());
         assertEquals(Direction.N, rover.getDirection());
@@ -17,28 +19,28 @@ class RoverTest {
     // 2. Teszt: "test_rover_can_turn_right_from_north"
     @Test
     void testRoverCanTurnRightFromNorth() {
-        Rover rover = new Rover(0, 0, Direction.N); // ENUM
+        Rover rover = new Rover(0, 0, Direction.N, defaultPlanet); // ENUM
         rover.execute("r");
         assertEquals(Direction.E, rover.getDirection()); // ENUM
     }
     // 3. Teszt: "test_rover_can_turn_right_from_east"
     @Test
     void testRoverCanTurnRightFromEast() {
-        Rover rover = new Rover(0, 0, Direction.E); // ENUM
+        Rover rover = new Rover(0, 0, Direction.E, defaultPlanet); // ENUM
         rover.execute("r");
         assertEquals(Direction.S, rover.getDirection()); // ENUM
     }
     // 4. Teszt: "test_rover_can_turn_right_from_south"
     @Test
     void testRoverCanTurnRightFromSouth() {
-        Rover rover = new Rover(0, 0, Direction.S); // ENUM
+        Rover rover = new Rover(0, 0, Direction.S, defaultPlanet); // ENUM
         rover.execute("r");
         assertEquals(Direction.W, rover.getDirection()); // ENUM
     }
     // 5. Teszt: "test_rover_can_turn_right_from_west"
     @Test
     void testRoverCanTurnRightFromWest() {
-        Rover rover = new Rover(0, 0, Direction.W); // ENUM
+        Rover rover = new Rover(0, 0, Direction.W,defaultPlanet); // ENUM
         rover.execute("r");
         assertEquals(Direction.N, rover.getDirection()); // ENUM
     }
@@ -46,7 +48,7 @@ class RoverTest {
     @Test
     void testRoverCanTurnLeftFromNorth() {
         // Adott egy Rover, ami északra néz
-        Rover rover = new Rover(0, 0, Direction.N);
+        Rover rover = new Rover(0, 0, Direction.N,defaultPlanet);
 
         // Amikor kap egy 'l' (left) parancsot
         // Ez piros lesz, mert az execute még nem kezeli az 'l'-t
@@ -59,7 +61,7 @@ class RoverTest {
     @Test
     void testRoverCanMoveForwardFacingNorth() {
         // Adott egy Rover (0,0)-n, ami északra néz
-        Rover rover = new Rover(0, 0, Direction.N);
+        Rover rover = new Rover(0, 0, Direction.N,defaultPlanet);
 
         // Amikor kap egy 'f' (forward) parancsot
         // Ez piros lesz, mert az execute még nem kezeli az 'f'-et
@@ -75,7 +77,7 @@ class RoverTest {
     @Test
     void testRoverCanMoveForwardFacingEast() {
         // Adott egy Rover (0,0)-n, ami keletre néz
-        Rover rover = new Rover(0, 0, Direction.E);
+        Rover rover = new Rover(0, 0, Direction.E,defaultPlanet);
 
         // Amikor kap egy 'f' (forward) parancsot
         rover.execute("f");
@@ -90,7 +92,7 @@ class RoverTest {
     @Test
     void testRoverCanMoveForwardFacingSouth() {
         // Adott egy Rover (0,0)-n, ami délre néz
-        Rover rover = new Rover(0, 0, Direction.S);
+        Rover rover = new Rover(0, 0, Direction.S,defaultPlanet);
 
         // Amikor kap egy 'f' (forward) parancsot
         rover.execute("f");
@@ -105,7 +107,7 @@ class RoverTest {
     @Test
     void testRoverCanMoveForwardFacingWest() {
         // Adott egy Rover (0,0)-n, ami nyugatra néz
-        Rover rover = new Rover(0, 0, Direction.W);
+        Rover rover = new Rover(0, 0, Direction.W,defaultPlanet);
 
         // Amikor kap egy 'f' (forward) parancsot
         rover.execute("f");
@@ -120,7 +122,7 @@ class RoverTest {
     @Test
     void testRoverCanMoveBackwardFacingNorth() {
         // Adott egy Rover (0,0)-n, ami északra néz
-        Rover rover = new Rover(0, 0, Direction.N);
+        Rover rover = new Rover(0, 0, Direction.N,defaultPlanet);
 
         // Amikor kap egy 'b' (backward) parancsot
         // Ez piros lesz, mert az execute még nem kezeli a 'b'-t

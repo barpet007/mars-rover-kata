@@ -4,13 +4,15 @@ public class Rover {
 
     private int x;
     private int y;
-    private Direction direction; // MÓDOSÍTVA
+    private Direction direction;
+    private final Planet planet;
 
-    // Konstruktor, ami beállítja a kezdőértékeket
-    public Rover(int x, int y, Direction direction) { // MÓDOSÍTVA
+
+    public Rover(int x, int y, Direction direction, Planet planet) {
         this.x = x;
         this.y = y;
         this.direction = direction;
+        this.planet = planet; // EZ AZ ÚJ SOR
     }
 
     // Getterek, amiket a teszt hív
