@@ -4,10 +4,10 @@ public class Rover {
 
     private int x;
     private int y;
-    private char direction;
+    private Direction direction; // MÓDOSÍTVA
 
     // Konstruktor, ami beállítja a kezdőértékeket
-    public Rover(int x, int y, char direction) {
+    public Rover(int x, int y, Direction direction) { // MÓDOSÍTVA
         this.x = x;
         this.y = y;
         this.direction = direction;
@@ -22,22 +22,14 @@ public class Rover {
         return this.y;
     }
 
-    public char getDirection() {
+    public Direction getDirection() { // MÓDOSÍTVA
         return this.direction;
     }
 
     public void execute(String command) {
+        // MÓDOSÍTVA: A teljes if-else lánc helyett
         if (command.equals("r")) {
-            if (this.direction == 'N') {
-                this.direction = 'E';
-            } else if (this.direction == 'E') {
-                this.direction = 'S';
-            } else if (this.direction == 'S') {
-                this.direction = 'W';
-            } else if (this.direction == 'W') {
-                this.direction = 'N';
-            }
+            this.direction = this.direction.turnRight();
         }
     }
-
 }
