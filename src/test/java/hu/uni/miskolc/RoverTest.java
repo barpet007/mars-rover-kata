@@ -43,4 +43,16 @@ class RoverTest {
         // Akkor délre ('S') kell néznie
         assertEquals('S', rover.getDirection());
     }
+    // 4. Teszt: "test_rover_can_turn_right_from_south"
+    @Test
+    void testRoverCanTurnRightFromSouth() {
+        // Adott egy Rover, ami délre néz
+        Rover rover = new Rover(0, 0, 'S');
+
+        // Amikor kap egy 'r' (right) parancsot
+        rover.execute("r");
+
+        // Akkor nyugatra ('W') kell néznie
+        assertEquals('W', rover.getDirection());
+    }
 }
