@@ -154,5 +154,21 @@ class RoverTest {
         assertEquals(0, rover.getX());
         assertEquals(0, rover.getY()); // A várt eredmény a 0, nem a 10!
     }
+    // 13. Teszt: "test_rover_can_execute_multiple_commands"
+    @Test
+    void testRoverCanExecuteMultipleCommands() {
+        // Adott egy Rover (0,0)-n, ami északra néz
+        Rover rover = new Rover(0, 0, Direction.N, defaultPlanet);
+
+        // Amikor kap egy parancssorozatot: "rff"
+        // (Jobbra, Előre, Előre)
+        rover.execute("rff");
+
+        // Akkor a végeredménynek (2,0) kell lennie, Kelet felé nézve
+        // N(0,0) -> 'r' -> E(0,0) -> 'f' -> E(1,0) -> 'f' -> E(2,0)
+        assertEquals(2, rover.getX());
+        assertEquals(0, rover.getY());
+        assertEquals(Direction.E, rover.getDirection());
+    }
 
 }
