@@ -99,7 +99,7 @@ class RoverTest {
 
         // Akkor a pozíciójának (0,-1)-re kell változnia
         assertEquals(0, rover.getX());
-        assertEquals(-1, rover.getY()); // Y csökken eggyel
+        assertEquals(defaultPlanet.getHeight() - 1, rover.getY()); // Y csökken eggyel
         // Az iránya nem változik
         assertEquals(Direction.S, rover.getDirection());
     }
@@ -113,7 +113,7 @@ class RoverTest {
         rover.execute("f");
 
         // Akkor a pozíciójának (-1,0)-ra kell változnia
-        assertEquals(-1, rover.getX()); // X csökken eggyel
+        assertEquals(defaultPlanet.getWidth() - 1, rover.getX()); // X csökken eggyel
         assertEquals(0, rover.getY());
         // Az iránya nem változik
         assertEquals(Direction.W, rover.getDirection());
@@ -130,7 +130,7 @@ class RoverTest {
 
         // Akkor a pozíciójának (0,-1)-re kell változnia (azaz délre lép)
         assertEquals(0, rover.getX());
-        assertEquals(-1, rover.getY());
+        assertEquals(defaultPlanet.getHeight() - 1, rover.getY());
         // Az iránya nem változik
         assertEquals(Direction.N, rover.getDirection());
     }

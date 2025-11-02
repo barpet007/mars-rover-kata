@@ -28,27 +28,25 @@ public class Rover {
         return this.direction;
     }
 
-    // ... (a Rover.java fájlban)
 
     public void execute(String command) {
         if (command.equals("r")) {
             this.direction = this.direction.turnRight();
-
         } else if (command.equals("l")) {
             this.direction = this.direction.turnLeft();
-
         } else if (command.equals("f")) {
             int dx = this.direction.getDeltaX();
             int dy = this.direction.getDeltaY();
 
-            this.x = this.x + dx;
-            this.y = this.y + dy;
+            this.x = (this.x + dx + planet.getWidth()) % planet.getWidth();
+            this.y = (this.y + dy + planet.getHeight()) % planet.getHeight();
         } else if (command.equals("b")) {
             int dx = this.direction.getDeltaX();
             int dy = this.direction.getDeltaY();
 
-            this.x = this.x - dx;
-            this.y = this.y - dy;
+            this.x = (this.x - dx + planet.getWidth()) % planet.getWidth();
+            this.y = (this.y - dy + planet.getHeight()) % planet.getHeight();
         }
+
     }
 }
