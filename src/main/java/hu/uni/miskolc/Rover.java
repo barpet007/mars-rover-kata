@@ -29,13 +29,17 @@ public class Rover {
     public void execute(String command) {
         if (command.equals("r")) {
             this.direction = this.direction.turnRight();
-            } else if (command.equals("l")) {
-                this.direction = this.direction.turnLeft();
-            } else if (command.equals("f")) {
+
+        } else if (command.equals("l")) {
+            this.direction = this.direction.turnLeft();
+
+        } else if (command.equals("f")) {
             if (this.direction == Direction.N) {
                 this.y = this.y + 1;
             } else if (this.direction == Direction.E) {
                 this.x = this.x + 1;
+            } else if (this.direction == Direction.S) {
+                this.y = this.y - 1;
             }
         }
     }
