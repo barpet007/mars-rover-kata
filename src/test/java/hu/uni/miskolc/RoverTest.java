@@ -101,5 +101,20 @@ class RoverTest {
         // Az iránya nem változik
         assertEquals(Direction.S, rover.getDirection());
     }
+    // 10. Teszt: "test_rover_can_move_forward_facing_west"
+    @Test
+    void testRoverCanMoveForwardFacingWest() {
+        // Adott egy Rover (0,0)-n, ami nyugatra néz
+        Rover rover = new Rover(0, 0, Direction.W);
+
+        // Amikor kap egy 'f' (forward) parancsot
+        rover.execute("f");
+
+        // Akkor a pozíciójának (-1,0)-ra kell változnia
+        assertEquals(-1, rover.getX()); // X csökken eggyel
+        assertEquals(0, rover.getY());
+        // Az iránya nem változik
+        assertEquals(Direction.W, rover.getDirection());
+    }
 
 }
