@@ -27,9 +27,10 @@ public class Rover {
     }
 
     public void execute(String command) {
-        // MÓDOSÍTVA: A teljes if-else lánc helyett
         if (command.equals("r")) {
             this.direction = this.direction.turnRight();
+        } else if (command.equals("l")) {
+            this.direction = this.direction.turnLeft();
         }
     }
 }

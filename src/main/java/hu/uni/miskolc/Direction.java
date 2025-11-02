@@ -22,5 +22,19 @@ public enum Direction {
                 throw new IllegalStateException("Ismeretlen irány");
         }
     }
+    public Direction turnLeft() {
+        switch (this) {
+            case N:
+                return W; // Északról Nyugatra
+            case W:
+                return S;
+            case S:
+                return E;
+            case E:
+                return N; // Keletről Északra
+            default:
+                throw new IllegalStateException("Ismeretlen irány");
+        }
+    }
 
 }
