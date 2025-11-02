@@ -23,7 +23,7 @@ public class Rover {
     }
 
 
-    public void execute(String commands) {
+    public String execute(String commands) {
         for (char command : commands.toCharArray()) {
             switch (command) {
                 case 'r':
@@ -51,5 +51,6 @@ public class Rover {
                     break;
             }
         }
+        return "OK";
     }
 }
