@@ -134,5 +134,25 @@ class RoverTest {
         // Az iránya nem változik
         assertEquals(Direction.N, rover.getDirection());
     }
+    // 12. Teszt: "test_rover_wraps_at_north_pole"
+    @Test
+    void testRoverWrapsAtNorthPole() {
+        // Adott egy 10x10-es bolygó
+        Planet smallPlanet = new Planet(10, 10);
+
+        // A Rover a "legészakibb" ponton áll (x=0, y=9)
+        // (Mivel a bolygó 10 magas, a koordináták 0-tól 9-ig mennek)
+        int startX = 0;
+        int startY = smallPlanet.getHeight() - 1; // Ez 9 lesz
+
+        Rover rover = new Rover(startX, startY, Direction.N, smallPlanet);
+
+        // Amikor kap egy 'f' (forward) parancsot
+        rover.execute("f");
+
+        // Akkor át kell tekerednie a "déli sarokra" (y=0)
+        assertEquals(0, rover.getX());
+        assertEquals(0, rover.getY()); // A várt eredmény a 0, nem a 10!
+    }
 
 }
