@@ -26,6 +26,8 @@ public class Rover {
         return this.direction;
     }
 
+    // ... (a Rover.java fájlban)
+
     public void execute(String command) {
         if (command.equals("r")) {
             this.direction = this.direction.turnRight();
@@ -36,8 +38,15 @@ public class Rover {
         } else if (command.equals("f")) {
             int dx = this.direction.getDeltaX();
             int dy = this.direction.getDeltaY();
+
             this.x = this.x + dx;
             this.y = this.y + dy;
+        } else if (command.equals("b")) {
+            int dx = this.direction.getDeltaX();
+            int dy = this.direction.getDeltaY();
+
+            this.x = this.x - dx;
+            this.y = this.y - dy;
         }
     }
 }
