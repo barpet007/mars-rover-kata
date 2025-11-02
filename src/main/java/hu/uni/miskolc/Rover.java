@@ -31,6 +31,10 @@ public class Rover {
             this.direction = this.direction.turnRight();
         } else if (command.equals("l")) {
             this.direction = this.direction.turnLeft();
+        } else if (command.equals("f")) {
+            if (this.direction == Direction.N) {
+                this.y = this.y + 1;
+            }
         }
     }
 }
