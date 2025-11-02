@@ -29,33 +29,30 @@ public class Rover {
     }
 
 
-    public void execute(String commands) { // Átneveztem a paramétert 'commands'-ra
-
-        // Végigmegyünk a parancssorozat minden egyes karakterén
+    public void execute(String commands) {
         for (char command : commands.toCharArray()) {
-
-            // Az 'if-else if' lánc most már a 'char'-t vizsgálja
-            if (command == 'r') {
-                this.direction = this.direction.turnRight();
-
-            } else if (command == 'l') {
-                this.direction = this.direction.turnLeft();
-
-            } else if (command == 'f') {
-                int dx = this.direction.getDeltaX();
-                int dy = this.direction.getDeltaY();
-
-                this.x = (this.x + dx + planet.getWidth()) % planet.getWidth();
-                this.y = (this.y + dy + planet.getHeight()) % planet.getHeight();
-
-            } else if (command == 'b') {
-                int dx = this.direction.getDeltaX();
-                int dy = this.direction.getDeltaY();
-
-                this.x = (this.x - dx + planet.getWidth()) % planet.getWidth();
-                this.y = (this.y - dy + planet.getHeight()) % planet.getHeight();
+            switch (command) {
+                case 'r':
+                    this.direction = this.direction.turnRight();
+                    break;
+                case 'l':
+                    this.direction = this.direction.turnLeft();
+                    break;
+                case 'f':
+                    int dx_f = this.direction.getDeltaX();
+                    int dy_f = this.direction.getDeltaY();
+                    this.x = (this.x + dx_f + planet.getWidth()) % planet.getWidth();
+                    this.y = (this.y + dy_f + planet.getHeight()) % planet.getHeight();
+                    break;
+                case 'b':
+                    int dx_b = this.direction.getDeltaX();
+                    int dy_b = this.direction.getDeltaY();
+                    this.x = (this.x - dx_b + planet.getWidth()) % planet.getWidth();
+                    this.y = (this.y - dy_b + planet.getHeight()) % planet.getHeight();
+                    break;
+                // Alapértelmezett (default) eset:
+                // Ha ismeretlen a karakter, nem csinálunk semmit
             }
-            // Ha ismeretlen a parancs (pl. 'x'), egyszerűen kihagyjuk
         }
     }
 }
