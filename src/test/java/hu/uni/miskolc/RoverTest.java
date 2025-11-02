@@ -42,5 +42,18 @@ class RoverTest {
         rover.execute("r");
         assertEquals(Direction.N, rover.getDirection()); // ENUM
     }
+    // 6. Teszt: "test_rover_can_turn_left_from_north"
+    @Test
+    void testRoverCanTurnLeftFromNorth() {
+        // Adott egy Rover, ami északra néz
+        Rover rover = new Rover(0, 0, Direction.N);
+
+        // Amikor kap egy 'l' (left) parancsot
+        // Ez piros lesz, mert az execute még nem kezeli az 'l'-t
+        rover.execute("l");
+
+        // Akkor nyugatra ('W') kell néznie
+        assertEquals(Direction.W, rover.getDirection());
+    }
 
 }
