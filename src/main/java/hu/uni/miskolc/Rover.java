@@ -1,28 +1,22 @@
 package hu.uni.miskolc;
 
 public class Rover {
-
-    private int x;
-    private int y;
+    private Position position;
     private Direction direction;
     private final Planet planet;
 
 
     public Rover(int x, int y, Direction direction, Planet planet) {
-        this.x = x;
-        this.y = y;
+        this.position = new Position(x, y);
         this.direction = direction;
         this.planet = planet; // EZ AZ ÚJ SOR
     }
 
     // Getterek, amiket a teszt hív
-    public int getX() {
-        return this.x;
-    }
+    public int getX() { return this.position.x();}
 
-    public int getY() {
-        return this.y;
-    }
+
+    public int getY() { return this.position.y();}
 
     public Direction getDirection() {
         return this.direction;
@@ -41,17 +35,20 @@ public class Rover {
                 case 'f':
                     int dx_f = this.direction.getDeltaX();
                     int dy_f = this.direction.getDeltaY();
-                    this.x = (this.x + dx_f + planet.getWidth()) % planet.getWidth();
-                    this.y = (this.y + dy_f + planet.getHeight()) % planet.getHeight();
+                    // Először kiszámoljuk az új X-et és Y-t
+                    int newX_f = (this.position.x() + dx_f + planet.getWidth()) % planet.getWidth();
+                    int newY_f = (this.position.y() + dy_f + planet.getHeight()) % planet.getHeight();
+                    // Majd létrehozunk egy ÚJ Position objektumot
+                    this.position = new Position(newX_f, newY_f);
                     break;
                 case 'b':
                     int dx_b = this.direction.getDeltaX();
                     int dy_b = this.direction.getDeltaY();
-                    this.x = (this.x - dx_b + planet.getWidth()) % planet.getWidth();
-                    this.y = (this.y - dy_b + planet.getHeight()) % planet.getHeight();
+                    int newX_b = (this.position.x() - dx_b + planet.getWidth()) % planet.getWidth();
+                    int newY_b = (this.position.y() - dy_b + planet.getHeight()) % planet.getHeight();
+
+                    this.position = new Position(newX_b, newY_b);
                     break;
-                // Alapértelmezett (default) eset:
-                // Ha ismeretlen a karakter, nem csinálunk semmit
             }
         }
     }
