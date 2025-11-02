@@ -183,5 +183,29 @@ class RoverTest {
         assertEquals(Direction.E, rover.getDirection());
         assertEquals("OK", status);
     }
+    // 14. Teszt: "test_rover_stops_at_obstacle_and_reports_it"
+    @Test
+    void testRoverStopsAtObstacleAndReportsIt() {
+        // Adott egy akadály (0,2) pozíción
+        Position obstaclePosition = new Position(0, 2);
+        Set<Position> obstacles = Set.of(obstaclePosition);
+        Planet planetWithObstacle = new Planet(100, 100, obstacles);
+
+        // A Rover (0,0)-n áll, Északra néz
+        Rover rover = new Rover(0, 0, Direction.N, planetWithObstacle);
+
+        // Amikor egy parancssorozatot kap: "ff"
+        // Az első 'f' sikeres (0,1)-re
+        // A második 'f' akadályba ütközne (0,2)-n
+        String status = rover.execute("ff");
+
+        // Akkor:
+        // 1. A Rovernek az utolsó BIZTONSÁGOS pozíción kell maradnia (0,1)
+        assertEquals(0, rover.getX());
+        assertEquals(1, rover.getY());
+
+        // 2. A Rovernek jelentenie kell az akadályt
+        assertEquals("Obstacle at 0,2", status);
+    }
 
 }
