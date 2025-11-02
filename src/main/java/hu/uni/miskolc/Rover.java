@@ -25,12 +25,15 @@ public class Rover {
     public char getDirection() {
         return this.direction;
     }
+
     public void execute(String command) {
         if (command.equals("r")) {
             if (this.direction == 'N') {
                 this.direction = 'E';
             } else if (this.direction == 'E') {
                 this.direction = 'S';
+            } else if (this.direction == 'S') {
+                this.direction = 'W';
             }
         }
     }
