@@ -25,6 +25,11 @@ public class Rover {
 
     public String execute(String commands) {
         for (char command : commands.toCharArray()) {
+
+            // Az 'f' és 'b' esetekben először ki kell számolnunk a CÉLPOZÍCIÓT
+            // anélkül, hogy még odalépnénk.
+            Position nextPosition = this.position; // Alapértelmezett (ha 'r' vagy 'l')
+
             switch (command) {
                 case 'r':
                     this.direction = this.direction.turnRight();
@@ -33,24 +38,42 @@ public class Rover {
                     this.direction = this.direction.turnLeft();
                     break;
                 case 'f':
+                    // 1. Célpozíció számítása
                     int dx_f = this.direction.getDeltaX();
                     int dy_f = this.direction.getDeltaY();
-                    // Először kiszámoljuk az új X-et és Y-t
                     int newX_f = (this.position.x() + dx_f + planet.getWidth()) % planet.getWidth();
                     int newY_f = (this.position.y() + dy_f + planet.getHeight()) % planet.getHeight();
-                    // Majd létrehozunk egy ÚJ Position objektumot
-                    this.position = new Position(newX_f, newY_f);
+                    nextPosition = new Position(newX_f, newY_f);
+
+                    // 2. ELLENŐRZÉS: Van akadály a célpozíción?
+                    if (planet.hasObstacleAt(nextPosition)) {
+                        // Ha igen, jelentjük és azonnal leállunk (nem lépünk)
+                        return "Obstacle at " + nextPosition.x() + "," + nextPosition.y();
+                    }
+
+                    // 3. Nincs akadály? Akkor léphetünk.
+                    this.position = nextPosition;
                     break;
                 case 'b':
+                    // 1. Célpozíció számítása
                     int dx_b = this.direction.getDeltaX();
                     int dy_b = this.direction.getDeltaY();
                     int newX_b = (this.position.x() - dx_b + planet.getWidth()) % planet.getWidth();
                     int newY_b = (this.position.y() - dy_b + planet.getHeight()) % planet.getHeight();
+                    nextPosition = new Position(newX_b, newY_b);
 
-                    this.position = new Position(newX_b, newY_b);
+                    // 2. ELLENŐRZÉS
+                    if (planet.hasObstacleAt(nextPosition)) {
+                        return "Obstacle at " + nextPosition.x() + "," + nextPosition.y();
+                    }
+
+                    // 3. Lépés
+                    this.position = nextPosition;
                     break;
             }
         }
+
+        // Ha a teljes ciklus lefutott akadály nélkül:
         return "OK";
     }
 }

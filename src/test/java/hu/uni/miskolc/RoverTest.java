@@ -2,6 +2,7 @@ package hu.uni.miskolc;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.Set;
 
 class RoverTest {
     // Egy alapértelmezett bolygó az összes teszthez
