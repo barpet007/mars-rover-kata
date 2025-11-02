@@ -25,4 +25,14 @@ public class Rover {
     public char getDirection() {
         return this.direction;
     }
+    // ... (a getter metódusok után)
+
+    public void execute(String command) {
+        if (command.equals("r")) {
+            // Szigorúan csak annyi kód, hogy a teszt átmenjen:
+            if (this.direction == 'N') {
+                this.direction = 'E';
+            }
+        }
+    }
 }
